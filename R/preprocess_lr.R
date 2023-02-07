@@ -1,4 +1,4 @@
-#modify data functions
+#' @export
 preprocess_lr<-function(dat,protect){
   #remove dependedence via linear regression
   modifiedDAT<-dat

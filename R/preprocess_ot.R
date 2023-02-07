@@ -1,4 +1,4 @@
-#remove dependence via pairwise optimal transport
+#' @export
 preprocess_ot<-function(dat,protect){
   modifiedDAT<-dat #the new dataframe that will be returned
   tomodify<-setdiff(1:ncol(dat),protect) #the columns in dat to modify
