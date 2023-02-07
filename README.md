@@ -1,2 +1,5 @@
 # UMFI_R
-R code for UMFI
+Contains 
+1.  R code for reproducing the results of the UMFI paper (AISTATS 2023, https://arxiv.org/abs/2204.09938). 
+2.  Easily downloadable R package for basic UMFI functions
+3.  Python pacakge is currently in progress
