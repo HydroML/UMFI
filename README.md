@@ -5,11 +5,9 @@
 3.  Python pacakge is currently in progress
 
 ## How to use R package
-`
+``` R
 library(devtools)
-
 install_github("HydroML/UMFI")
-
 library(UMFI)
-`
+```
 
