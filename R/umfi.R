@@ -14,8 +14,8 @@ umfi<- function(X,y,mod_meth="lr"){
     if(mod_meth=="ot") newX<-preprocess_ot(X,i)
     if(mod_meth=="lr") newX<-preprocess_lr(X,i)
     
-    rfwith<-ranger(x=newX,y=y,num.trees = 100)
-    rfwithout<-ranger(x=newX[,-c(i)],y=y,num.trees = 100)
+    rfwith<-ranger::ranger(x=newX,y=y,num.trees = 100)
+    rfwithout<-ranger::ranger(x=newX[,-c(i)],y=y,num.trees = 100)
     if(is.numeric(y)) fi[i]<-max(rfwith$r.squared,0)-max(rfwithout$r.squared,0)
     if(is.factor(y)) fi[i]<- max(1-rfwith$prediction.error,0.5)-max(1-rfwithout$prediction.error,0.5)
   }
