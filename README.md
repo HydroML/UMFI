@@ -1,7 +1,7 @@
 # Ultra-marginal Feature Importance: Learning from Data with Causal Guarantees
 ## Contains:
-1.  R code for reproducing the results of the UMFI paper (AISTATS 2023, https://arxiv.org/abs/2204.09938). 
-2.  Easily downloadable R package for basic UMFI functions
+1.  UMFI_aistats_an.R is R code for reproducing the results of the UMFI paper (AISTATS 2023, https://arxiv.org/abs/2204.09938). 
+2.  Easily downloadable R package for basic UMFI functions (see README below for a quick tutorial)
 3.  Python pacakge is currently under development
 
 ## How to use R package
