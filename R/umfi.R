@@ -23,6 +23,14 @@ umfi<- function(X,y,mod_meth="lr"){
 }
 
 
+#' Calculate ultra-marginal feature importance
+#'
+#' This function calculates the UMFI of all features within X in parallel according to a specified fair representation learning method and random forests accuracy as an evaluation function.
+#'
+#' @param X A matrix or dataframe of explanatory features
+#' @param y A numeric or factor vector
+#' @param mod_meth A string indicating if you want to use linear regression ("lr") or optimal transport ("ot") for dependence removal
+#' @return A numeric vector of feature importance scores
 #' @export
 umfi_par<- function(X,y,mod_meth){
   fi<-foreach(i=1:ncol(X),  .inorder = FALSE, .export = c("preprocess_ot","preprocess_lr"),
