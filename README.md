@@ -20,5 +20,10 @@ cor(S,S[,protected_col])
 # try removing dependencies via linear regression
 S<-preprocess_ot(dat=X_dat,protect = protected_col)
 cor(S,S[,protected_col])
+
+# try calculating UMFI values for the BRCA dataset (with linear regression)
+BRCA$BRCA_Subtype_PAM50<-as.factor(BRCA$BRCA_Subtype_PAM50)
+fi<-umfi(X_dat,BRCA$BRCA_Subtype_PAM50,mod_meth = "lr")
+
 ```
 
