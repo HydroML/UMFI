@@ -2,7 +2,7 @@ Package: UMFI
 Title: This package implements ultra-marginal feature importance and some associated functions from the corresponding paper in AISTATS 2023.
 Version: 0.1
 Authors@R: 
-    person("Joseph", "Janssen", "joejanssen@eoas.ubc.ca", role = c("aut", "cre"))
+    person(given = "Joseph", family = "Janssen", email="joejanssen@eoas.ubc.ca", role = c("aut", "cre"))
 Description: This package implements ultra-marginal feature importance and some associated functions from the corresponding paper in AISTATS 2023 (Ultra-marginal Feature Importance: Learning from Data with Causal Guarantees).
 License: `use_mit_license()`
 Encoding: UTF-8
