@@ -35,8 +35,8 @@ umfi<- function(X,y,mod_meth="lr"){
 umfi_par<- function(X,y,mod_meth){
   fi<-foreach::foreach(i=1:ncol(X),  .inorder = FALSE, .export = c("preprocess_ot","preprocess_lr"),
               .packages = c("ranger", "doParallel"),.combine = 'c')%dopar%{
-                if(mod_meth=="otpw") newX<-modifty_otpw_quantiles_lin(X,i)
-                if(mod_meth=="lin") newX<-modifty_linreg(X,i)
+                if(mod_meth=="ot") newX<-preprocess_ot(X,i)
+                if(mod_meth=="lr") newX<-preprocess_lr(X,i)
                 rfwith<-ranger(x=newX,y=y,num.trees = 100)
                 rfwithout<-ranger(x=newX[,-c(i)],y=y,num.trees = 100)
                 if(is.numeric(y)) return(max(rfwith$r.squared,0)-max(rfwithout$r.squared,0))
