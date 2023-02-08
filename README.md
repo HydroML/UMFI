@@ -39,7 +39,8 @@ parallel::stopCluster(cl)
 
 # try calculating MCI values for the BRCA dataset
 BRCA$BRCA_Subtype_PAM50<-as.factor(BRCA$BRCA_Subtype_PAM50)
-fi<-mci(X_dat,BRCA$BRCA_Subtype_PAM50,k=2) #warning: computationally expensive
+fi<-mci(X_dat[,1:10],BRCA$BRCA_Subtype_PAM50,k=3) #warning due to computational complexity: do not try to use on large datasets and do not use large k
+
 
 
 # try calculating UMFI values in parallel for the BRCA dataset (with optimal transport)
