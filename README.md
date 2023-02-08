@@ -9,6 +9,7 @@
 library(devtools)
 install_github("HydroML/UMFI")
 library(UMFI)
-UMFI:::preprocess_lr
+data("BRCA")
+BRCA
 ```
 
