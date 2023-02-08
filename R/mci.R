@@ -9,7 +9,7 @@
 #' @export
 mci<-function(X,y,k=2){
   colvec<-1:ncol(X)
-  CompleteSet<-powerSet(colvec,m=k+1)
+  CompleteSet<-rje::powerSet(colvec,m=k+1)
   CompleteSetErrors<-rep(0,length(CompleteSet))
   
   for(e in 1:length(CompleteSetErrors)){
@@ -57,7 +57,7 @@ mci<-function(X,y,k=2){
 #' @export
 mci_par<-function(X,y,k=2){
   colvec<-1:ncol(X)
-  CompleteSet<-powerSet(colvec,m=k)
+  CompleteSet<-rje::powerSet(colvec,m=k)
   
   CompleteSetErrors<-foreach::foreach(e=1:length(CompleteSet),  .inorder = FALSE,
                              .packages = c("ranger", "doParallel"),.combine = 'c')%dopar%{
