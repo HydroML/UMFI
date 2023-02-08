@@ -33,7 +33,7 @@ umfi<- function(X,y,mod_meth="lr"){
 #' @return A numeric vector of feature importance scores
 #' @export
 umfi_par<- function(X,y,mod_meth){
-  fi<-foreach(i=1:ncol(X),  .inorder = FALSE, .export = c("preprocess_ot","preprocess_lr"),
+  fi<-foreach::foreach(i=1:ncol(X),  .inorder = FALSE, .export = c("preprocess_ot","preprocess_lr"),
               .packages = c("ranger", "doParallel"),.combine = 'c')%dopar%{
                 if(mod_meth=="otpw") newX<-modifty_otpw_quantiles_lin(X,i)
                 if(mod_meth=="lin") newX<-modifty_linreg(X,i)

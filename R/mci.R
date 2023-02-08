@@ -14,7 +14,7 @@ mci<-function(X,y,k=2){
   
   for(e in 1:length(CompleteSetErrors)){
     if(length(CompleteSet[[e]])>0){
-      rfmod<-ranger(y=y,x=as.data.frame(X[,CompleteSet[[e]]]),num.trees = 100)
+      rfmod<-ranger::ranger(y=y,x=as.data.frame(X[,CompleteSet[[e]]]),num.trees = 100)
       if(is.numeric(y)) CompleteSetErrors[e]<-rfmod$r.squared
       if(is.factor(y)) CompleteSetErrors[e]<- 1- rfmod$prediction.error
     }
@@ -59,10 +59,10 @@ mci_par<-function(X,y,k=2){
   colvec<-1:ncol(X)
   CompleteSet<-powerSet(colvec,m=k)
   
-  CompleteSetErrors<-foreach(e=1:length(CompleteSet),  .inorder = FALSE,
+  CompleteSetErrors<-foreach::foreach(e=1:length(CompleteSet),  .inorder = FALSE,
                              .packages = c("ranger", "doParallel"),.combine = 'c')%dopar%{
                                if(length(CompleteSet[[e]])>0){
-                                 rfmod<-ranger(y=y,x=as.data.frame(X[,CompleteSet[[e]]]),num.trees = 100)
+                                 rfmod<-ranger::ranger(y=y,x=as.data.frame(X[,CompleteSet[[e]]]),num.trees = 100)
                                  if(is.numeric(y)) return(rfmod$r.squared)
                                  if(is.factor(y)) return(1- rfmod$prediction.error)
                                }
