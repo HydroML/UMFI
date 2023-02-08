@@ -21,3 +21,19 @@ umfi<- function(X,y,mod_meth="lr"){
   fi[fi<0]<-0
   fi
 }
+
+
+#' @export
+umfi_par<- function(X,y,mod_meth){
+  fi<-foreach(i=1:ncol(X),  .inorder = FALSE, .export = c("preprocess_ot","preprocess_lr"),
+              .packages = c("ranger", "doParallel"),.combine = 'c')%dopar%{
+                if(mod_meth=="otpw") newX<-modifty_otpw_quantiles_lin(X,i)
+                if(mod_meth=="lin") newX<-modifty_linreg(X,i)
+                rfwith<-ranger(x=newX,y=y,num.trees = 100)
+                rfwithout<-ranger(x=newX[,-c(i)],y=y,num.trees = 100)
+                if(is.numeric(y)) return(max(rfwith$r.squared,0)-max(rfwithout$r.squared,0))
+                if(is.factor(y)) return(max(1-rfwith$prediction.error,0.5)-max(1-rfwithout$prediction.error,0.5))
+              }
+  fi[fi<0]<-0
+  fi
+}
