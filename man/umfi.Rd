@@ -2,19 +2,20 @@
 % Please edit documentation in R/umfi.R
 \name{umfi}
 \alias{umfi}
-\title{Load a Matrix}
+\title{Calculate ultra-marginal feature importance}
 \usage{
 umfi(X, y, mod_meth = "lr")
 }
 \arguments{
-\item{infile}{Path to the input file}
+\item{X}{A matrix or dataframe of explanatory features}
+
+\item{y}{A numeric or factor vector}
+
+\item{mod_meth}{A string indicating if you want to use linear regression ("lr") or optimal transport ("ot") for dependence removal}
 }
 \value{
-A matrix of the infile
+A numeric vector of feature importance scores
 }
 \description{
-This function loads a file as a matrix. It assumes that the first column
-contains the rownames and the subsequent columns are the sample identifiers.
-Any rows with duplicated row names will be dropped with the first one being
-kepted.
+This function calculates the UMFI of all features within X according to a specified fair representation learning method and random forests accuracy as an evaluation function.
 }

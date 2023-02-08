@@ -1,18 +1,17 @@
-#' Load a Matrix
+#' Remove dependencies via optimal transport
 #'
-#' This function loads a file as a matrix. It assumes that the first column
-#' contains the rownames and the subsequent columns are the sample identifiers.
-#' Any rows with duplicated row names will be dropped with the first one being
-#' kepted.
+#' This function removes the dependencies between the protected attribute and the rest of the features via optimal transport.
 #'
-#' @param infile Path to the input file
-#' @return A matrix of the infile
+#' @param dat A dataframe or matrix of data
+#' @param protect The column number of the protected attribute
+#' @param n_quan The number of quantiles to use to estimate the conditional CDF (default is ceiling(nrow(dat)/150))
+#' @param min_sd The minimum standard deviation that data points within a quantile can have before noise is added (default is 1e-6)
+#' @return A dataframe or matrix of data with the dependencies between the protected attribute and the rest of the features removed
 #' @export
-preprocess_ot<-function(dat,protect){
+preprocess_ot<-function(dat,protect,n_quan=ceiling(nrow(dat)/150),min_sd=1e-6){
   modifiedDAT<-dat #the new dataframe that will be returned
   tomodify<-setdiff(1:ncol(dat),protect) #the columns in dat to modify
   z=dat[,protect] #the protected attribute
-  n_quan=ceiling(nrow(dat)/150) #number of quantiles to use (20 points per regression)
   quans<-(seq(from=0,to=1,length.out = n_quan)) #quantiles of interest
   quans<-quantile(z,quans) #quantiles of z
   #loop through each feature we need to modify
@@ -24,8 +23,8 @@ preprocess_ot<-function(dat,protect){
       cur_obs<- (z<=quans[quan] & z>=quans[quan-1])
       x_curquan=x[cur_obs]
       z_curquan=z[cur_obs]
-      if(sd(x_curquan)<1e-6) x_curquan<-x_curquan+rnorm(length(x_curquan),sd=sd(x)/length(x))
-      if(sd(z_curquan)<1e-6) z_curquan<-z_curquan+rnorm(length(z_curquan),sd=sd(z)/length(z))
+      if(sd(x_curquan)<min_sd) x_curquan<-x_curquan+rnorm(length(x_curquan),sd=sd(x)/length(x))
+      if(sd(z_curquan)<min_sd) z_curquan<-z_curquan+rnorm(length(z_curquan),sd=sd(z)/length(z))
       mod<-lm(x_curquan~z_curquan)
       rv<-as.numeric(mod$residuals)
       condF<-rank(rv)/length(rv)

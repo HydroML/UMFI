@@ -1,12 +1,11 @@
-#' Load a Matrix
+#' Calculate ultra-marginal feature importance
 #'
-#' This function loads a file as a matrix. It assumes that the first column
-#' contains the rownames and the subsequent columns are the sample identifiers.
-#' Any rows with duplicated row names will be dropped with the first one being
-#' kepted.
+#' This function calculates the UMFI of all features within X according to a specified fair representation learning method and random forests accuracy as an evaluation function.
 #'
-#' @param infile Path to the input file
-#' @return A matrix of the infile
+#' @param X A matrix or dataframe of explanatory features
+#' @param y A numeric or factor vector
+#' @param mod_meth A string indicating if you want to use linear regression ("lr") or optimal transport ("ot") for dependence removal
+#' @return A numeric vector of feature importance scores
 #' @export
 umfi<- function(X,y,mod_meth="lr"){
   fi<-rep(0,ncol(X))
