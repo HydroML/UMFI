@@ -2,19 +2,18 @@
 % Please edit documentation in R/preprocess_lr.R
 \name{preprocess_lr}
 \alias{preprocess_lr}
-\title{Load a Matrix}
+\title{Remove dependencies via linear regression}
 \usage{
 preprocess_lr(dat, protect)
 }
 \arguments{
-\item{infile}{Path to the input file}
+\item{dat}{A dataframe or matrix of data}
+
+\item{protect}{The column number of the protected attribute}
 }
 \value{
-A matrix of the infile
+A dataframe or matrix of data with the dependencies between the protected attribute and the rest of the features removed
 }
 \description{
-This function loads a file as a matrix. It assumes that the first column
-contains the rownames and the subsequent columns are the sample identifiers.
-Any rows with duplicated row names will be dropped with the first one being
-kepted.
+This function removes the dependencies between the protected attribute and the rest of the features via linear regression.
 }

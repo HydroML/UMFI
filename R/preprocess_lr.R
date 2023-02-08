@@ -1,12 +1,10 @@
-#' Load a Matrix
+#' Remove dependencies via linear regression
 #'
-#' This function loads a file as a matrix. It assumes that the first column
-#' contains the rownames and the subsequent columns are the sample identifiers.
-#' Any rows with duplicated row names will be dropped with the first one being
-#' kepted.
+#' This function removes the dependencies between the protected attribute and the rest of the features via linear regression.
 #'
-#' @param infile Path to the input file
-#' @return A matrix of the infile
+#' @param dat A dataframe or matrix of data
+#' @param protect The column number of the protected attribute
+#' @return A dataframe or matrix of data with the dependencies between the protected attribute and the rest of the features removed
 #' @export
 preprocess_lr<-function(dat,protect){
   #remove dependedence via linear regression

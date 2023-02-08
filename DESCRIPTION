@@ -1,12 +1,12 @@
 Package: UMFI
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: This package implements ultra-marginal feature importance and some associated functions from the corresponding paper in AISTATS 2023.
+Version: 0.1
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Joseph", "Janssen", , "joejanssen@eoas.ubc.ca", role = c("aut", "cre"))
+	person("Vincent", "Guan")
+	person("Elina", "Robeva")
+Description: This package implements ultra-marginal feature importance and some associated functions from the corresponding paper in AISTATS 2023 (Ultra-marginal Feature Importance: Learning from Data with Causal Guarantees).
+License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
@@ -16,4 +16,5 @@ Suggests:
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
+	ranger
 LazyData: true
