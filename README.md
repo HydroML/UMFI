@@ -10,6 +10,15 @@ library(devtools)
 install_github("HydroML/UMFI")
 library(UMFI)
 data("BRCA")
-BRCA
+X_dat<-BRCA[,2:51]
+protected_col<-3
+
+# try removing dependencies via linear regression
+S<-preprocess_lr(dat=X_dat,protect = protected_col)
+cor(S,S[,protected_col])
+
+# try removing dependencies via linear regression
+S<-preprocess_ot(dat=X_dat,protect = protected_col)
+cor(S,S[,protected_col])
 ```
 
