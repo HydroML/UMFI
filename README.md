@@ -7,7 +7,7 @@
 ## How to use R package
 ``` R
 library(devtools)
-install_github("HydroML/UMFI")
+install_github("HydroML/UMFI",upgrade = F)
 library(UMFI)
 data("BRCA")
 X_dat<-BRCA[,2:51]
