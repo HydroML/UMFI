@@ -19,8 +19,8 @@ preprocess_ot<-function(dat,protect,n_quan=ceiling(nrow(dat)/150),min_sd=1e-6){
     x=dat[,j] #feature we will modifty
     newx<-x
     orderedCONDF<-sort(x) #sorted x
-    for(quan in 2:n_quan){
-      cur_obs<- (z<=quans[quan] & z>=quans[quan-1])
+    for(quan in 2:max(n_quan,2)){
+      cur_obs<- (z<=min(quans[quan],max(z),na.rm = T) & z>=quans[quan-1])
       x_curquan=x[cur_obs]
       z_curquan=z[cur_obs]
       if(sd(x_curquan)<min_sd) x_curquan<-x_curquan+rnorm(length(x_curquan),sd=sd(x)/length(x))
