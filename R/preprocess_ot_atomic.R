@@ -1,4 +1,4 @@
-Remove dependencies via optimal transport on discrete data
+#' Remove dependencies via optimal transport on discrete data
 #'
 #' This function removes the dependencies between the protected attribute (discrete) and the rest of the features (all discrete) via optimal transport.
 #'
