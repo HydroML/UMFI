@@ -15,7 +15,7 @@ umfi<- function(X,y,mod_meth="lr"){
     if(mod_meth=="ot_atomic") newX<-preprocess_ot_atomic(X,i)
     
     rfwith<-ranger::ranger(x=newX,y=y,num.trees = 100)
-    rfwithout<-ranger::ranger(x=data.frame(matrix(newX[,-c(i)],nrow = nrow(newX))),y=y,num.trees = 100)
+    rfwithout<-ranger::ranger(x=as.data.frame(as.matrix(newX[,-c(i)],nrow = nrow(newX))),y=y,num.trees = 100)
     if(is.numeric(y)) fi[i]<-max(rfwith$r.squared,0)-max(rfwithout$r.squared,0)
     if(is.factor(y)) fi[i]<- max(1-rfwith$prediction.error,0.5)-max(1-rfwithout$prediction.error,0.5)
   }
@@ -40,7 +40,7 @@ umfi_par<- function(X,y,mod_meth){
                 if(mod_meth=="lr") newX<-preprocess_lr(X,i)
                 if(mod_meth=="ot_atomic") newX<-preprocess_ot_atomic(X,i)
                 rfwith<-ranger(x=newX,y=y,num.trees = 100)
-                rfwithout<-ranger::ranger(x=data.frame(matrix(newX[,-c(i)],nrow = nrow(newX))),y=y,num.trees = 100)
+                rfwithout<-ranger::ranger(x=as.data.frame(as.matrix(newX[,-c(i)],nrow = nrow(newX))),y=y,num.trees = 100)
                 if(is.numeric(y)) return(max(rfwith$r.squared,0)-max(rfwithout$r.squared,0))
                 if(is.factor(y)) return(max(1-rfwith$prediction.error,0.5)-max(1-rfwithout$prediction.error,0.5))
               }
