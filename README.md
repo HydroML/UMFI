@@ -2,7 +2,7 @@
 ## Contains:
 1.  UMFI_aistats_an.R is R code for reproducing the results of the UMFI paper (AISTATS 2023, https://arxiv.org/abs/2204.09938). 
 2.  Easily downloadable R package for basic UMFI functions (see README below for a quick tutorial)
-3.  Python pacakge is currently under development
+3.  Python pacakge is available here: https://github.com/guanton/umfi_python
 
 ## How to use R package
 ``` R
